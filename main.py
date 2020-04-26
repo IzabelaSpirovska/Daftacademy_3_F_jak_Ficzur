@@ -16,11 +16,15 @@ security = HTTPBasic()
 
 
 @app.post("/login")
-def get_current_user(response: Response, credentials: HTTPBasicCredentials = Depends(security)):
-    correct_username = secrets.compare_digest(credentials.username, "trudnY")
-    correct_password = secrets.compare_digest(credentials.password, "PaC13Nt")
-    if not (correct_username and correct_password):
-        raise HTTPException(status_code=401, detail="Incorrect email or password")
+def get_current_user(response: Response, user: str, password: str, credentials: HTTPBasicCredentials = Depends(security)):
+    check = False
+    for user, password in app.secret_key.items():
+        check_user = secrets.compare_digest(credentials.user, user)
+        check_password = secrets.compare_digest(credentials.password, password)
+        if check_user and check_password:
+            check = True
+    if not check:
+        raise HTTPException(status_code = 401, detail = "Unauthorized")
     session_token = sha256(bytes(f"{credentials.username}{credentials.password}{app.secret_key}", encoding='utf8')).hexdigest()
     app.session_tokens.append(session_token)
     response.set_cookie(key="session_token", value=session_token)
