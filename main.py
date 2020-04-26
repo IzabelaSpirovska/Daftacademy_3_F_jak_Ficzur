@@ -1,10 +1,18 @@
 from hashlib import sha256
 from starlette.responses import RedirectResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from fastapi import Depends, Response, status
+from fastapi import FastAPI, Depends, Response, status, HTTPException
 import secrets
+from pydantic import BaseModel
+
+app = FastAPI()
+app.ID = 0
+app.patients = {}
+app.session_tokens = []
+app.secret_key = "very constant and random secret, best 64 characters, here it is."
 
 security = HTTPBasic()
+
 
 
 @app.post("/login")
