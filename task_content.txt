@@ -1,9 +1,7 @@
 #--- TASK 1 -----------------------------------------------------------
 
 Zadanie będzie polegało na rozszerzeniu funkjconalności pierwszej pracy domowej i poprawy kilku błędów zauważonych przez użytkowników.
-
-
-1. Wykonaj endpointy:
+Wykonaj endpointy:
 '/welcome'  - GET
 i 
 '/' - GET
