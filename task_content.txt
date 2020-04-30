@@ -1,0 +1,101 @@
+#--- TASK 1 -----------------------------------------------------------
+
+Zadanie będzie polegało na rozszerzeniu funkjconalności pierwszej pracy domowej i poprawy kilku błędów zauważonych przez użytkowników.
+
+
+1. Wykonaj endpointy:
+'/welcome'  - GET
+i 
+'/' - GET
+
+zwróć w nich jakiś powitalny tekst.
+
+#--- TASK 2 -----------------------------------------------------------
+
+Wykonaj endpoint:
+'/login' - POST
+
+na którym to możemy zalogować się do konta za pomocą poniższych sekretów:
+
+login: trudnY
+pass: PaC13Nt
+
+Po udanym logowaniu zostajemy przekierowani na endpoint '/welcome'.
+
+Uwierzytelnienia dokonujemy poprzez BasicAuth.
+
+Logowanie powinno umożliwić korzystanie z endpointów stworzonych w kolejnych etapach. W przypadku próby dostępu bez sesji, aplikacja powinna zwrócić odpowiedni kod błędu.
+
+
+Trzeba utworzyć sesję - należy posłużyć się mechanizmem cookies.
+
+#--- TASK 3 -----------------------------------------------------------
+
+Kolejny endpoint 
+'/logout' - POST
+powinien:
+- być dostępny tylko dla zalogowanych użytkowników.
+
+Po wykonaniu akcji, użytkownik powinien stracić możliwość korzystania z chronionych endpointów ('/patient', ...) i zostać przekierowany na '/'.
+
+#--- TASK 4 -----------------------------------------------------------
+
+Zmień endpoint '/welcome' żeby:
+- obsługiwał metodę GET
+- był dostępny tylko dla zalogowanych użytkowników
+- zwracał pooprawny HTML z powitaniem
+
+Poprawny dokument HTML powinien zawierać dowolny element (np. <p>, <h1>) z
+atrybutem 'id=greeting'. Tekst powitania powinien być taki:
+'Hello, {{ user }}!'.
+
+Za '{{ user }}' wstawiamy nazwę użytkownika (mamy tylko jednego) | użyj silnika templatek np. jinja2.
+
+#--- TASK 5 -----------------------------------------------------------
+
+ W tym zadaniu należy stworzyć dwa endpointy:
+
+'/patient' - POST, GET
+- który powienien być dostępny tylko dla zalogowanych użytkowników.
+
+
+POST:
+
+`{"name": "IMIE", "surname": "NAZWISKO"}`
+
+
+po pomyślnie dodanym pacjencie, powinniśmy być przekierowani na adres:
+`/patient/<id>`
+
+i otrzymać JSON w takim formacie:
+
+'{"name": "IMIE", "surname": "NAZWISKO"}'
+
+
+GET:
+
+Metoda powinna zwrócić wszystkich dodanych wcześniej pacjentów
+
+Format odpowiedzi w postaci jsona:
+'{
+    "id_1": {
+        "name": "Kaito",
+        "surname": "Śrubka"
+    },
+    "id_2": {
+        "name": "Andrzej",
+        "surname": "Kiełbasa"
+    }
+'}
+
+id_n to wybrany przez was identyfikator, może być int, może być UUID
+
+oraz endpoint 
+'/patient/<id>' - DELETE i GET
+- Endpoint tylko dla zalogowanych użytkowników
+
+GET:
+Zwraca informacje o id'tym pacjencie.
+
+DELETE:
+Usuwamy id'tego pacjenta.
