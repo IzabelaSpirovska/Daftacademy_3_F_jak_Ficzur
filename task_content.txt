@@ -24,7 +24,6 @@ Uwierzytelnienia dokonujemy poprzez BasicAuth.
 
 Logowanie powinno umożliwić korzystanie z endpointów stworzonych w kolejnych etapach. W przypadku próby dostępu bez sesji, aplikacja powinna zwrócić odpowiedni kod błędu.
 
-
 Trzeba utworzyć sesję - należy posłużyć się mechanizmem cookies.
 
 #--- TASK 3 -----------------------------------------------------------
@@ -55,7 +54,6 @@ Za '{{ user }}' wstawiamy nazwę użytkownika (mamy tylko jednego) | użyj silni
 
 '/patient' - POST, GET
 - który powienien być dostępny tylko dla zalogowanych użytkowników.
-
 
 POST:
 
